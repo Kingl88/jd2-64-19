@@ -1,3 +1,9 @@
 /target
-.idea
-/jd2-64-19.iml
+.idea/
+/*.iml
+/project-parent/design_bureau-common/design_bureau-common.iml
+/project-parent/design_bureau-parent.iml
+/project-parent/design_bureau-web/design_bureau-web.iml
+/out/*
+/project-parent/design_bureau-common/src/main/java/by/it/academy/project/App.java
+/project-parent/design_bureau-common/src/test/java/by/it/academy/project/AppTest.java

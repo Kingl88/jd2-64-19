@@ -4,6 +4,7 @@ import by.it.academy.design_bureau.model_bureau.Drawing;
 import by.it.academy.design_bureau.model_bureau.Employee;
 import by.it.academy.design_bureau.service.Service;
 import by.it.academy.design_bureau.service.ServiceDrawing;
+import by.it.academy.design_bureau.service.ServiceEmployeeImp;
 import by.it.academy.design_bureau.service.ServiceEmployee;
 
 import javax.servlet.ServletException;
@@ -12,19 +13,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/drawingCreate")
 public class DrawingCreateServlet extends HttpServlet {
     private Service<Drawing> serviceDrawing = ServiceDrawing.getService();
+    private ServiceEmployee employeeInterface = ServiceEmployeeImp.getService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = req.getParameter("name");
         String designation = req.getParameter("designation");
-        Employee developed = ServiceEmployee.getService().getEmployeeByLastName(req.getParameter("developed"));
-        Employee checked = ServiceEmployee.getService().getEmployeeByLastName(req.getParameter("checked"));
-        Employee approved = ServiceEmployee.getService().getEmployeeByLastName(req.getParameter("approved"));
+        Employee developed = employeeInterface.getEmployeeByLastName(req.getParameter("developed"));
+        Employee checked = employeeInterface.getEmployeeByLastName(req.getParameter("checked"));
+        Employee approved = employeeInterface.getEmployeeByLastName(req.getParameter("approved"));
         String isAssembly = req.getParameter("isAssembly");
         Drawing drawing = new Drawing(null, name, designation, developed, checked, approved,
                 isAssembly.equals("true"));

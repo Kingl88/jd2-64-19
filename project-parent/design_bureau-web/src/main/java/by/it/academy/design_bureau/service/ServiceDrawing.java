@@ -8,13 +8,13 @@ import java.util.List;
 
 public class ServiceDrawing implements Service <Drawing> {
 
-    private static final Service INSTANCE = new ServiceDrawing();
+    private static final Service<Drawing> INSTANCE = new ServiceDrawing();
 
     private final List<Drawing> drawings;
 
     public ServiceDrawing() {
         drawings = new ArrayList<>();
-        ArrayList<Employee> employees = new ArrayList<>(ServiceEmployee.getService().getAll());
+        ArrayList<Employee> employees = new ArrayList<>(ServiceEmployeeImp.getService().getAll());
         drawings.add(new Drawing(1L,"Редуктор", "АБВГ.00.00.000СБ",
                 employees.get(1), employees.get(2), employees.get(0), true));
         drawings.add(new Drawing(2L,"Корпус", "АБВГ.00.00.001", employees.get(1), employees.get(2),

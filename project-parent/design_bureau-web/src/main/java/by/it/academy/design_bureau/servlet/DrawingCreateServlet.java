@@ -17,33 +17,14 @@ import java.util.ArrayList;
 @WebServlet(urlPatterns = "/drawingCreate")
 public class DrawingCreateServlet extends HttpServlet {
     private Service<Drawing> serviceDrawing = ServiceDrawing.getService();
-    ArrayList<Employee> employees = new ArrayList<>(ServiceEmployee.getService().getAll());
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = req.getParameter("name");
         String designation = req.getParameter("designation");
-        Employee developed = null;
-        for (Employee emp: employees) {
-            if(emp.getFirstName().equals(req.getParameter("developed"))){
-                developed = emp;
-                break;
-            }
-        }
-        Employee checked = null;
-        for (Employee emp: employees) {
-            if(emp.getFirstName().equals(req.getParameter("checked"))){
-                checked = emp;
-                break;
-            }
-        }
-        Employee approved = null;
-        for (Employee emp: employees) {
-            if(emp.getFirstName().equals(req.getParameter("approved"))){
-                approved = emp;
-                break;
-            }
-        }
+        Employee developed = ServiceEmployee.getEmployeeByLastName(req.getParameter("developed"));
+        Employee checked = ServiceEmployee.getEmployeeByLastName(req.getParameter("checked"));
+        Employee approved = ServiceEmployee.getEmployeeByLastName(req.getParameter("approved"));
         String isAssembly = req.getParameter("isAssembly");
         Drawing drawing = new Drawing(null, name, designation, developed, checked, approved,
                 isAssembly.equals("true"));

@@ -9,7 +9,7 @@ public class ServiceEmployee implements Service<Employee> {
 
     private static final Service INSTANCE = new ServiceEmployee();
 
-    private final List<Employee> employees;
+    private static List<Employee> employees;
 
     public ServiceEmployee() {
         employees = new ArrayList<>();
@@ -45,5 +45,13 @@ public class ServiceEmployee implements Service<Employee> {
     @Override
     public void update(Long id, Employee employee) {
         employees.set(Math.toIntExact(id), employee);
+    }
+    public static Employee getEmployeeByLastName(String lastName) {
+        for (Employee emp: employees) {
+            if(emp.getLastName().equals(lastName)){
+                return emp;
+            }
+        }
+        return null;
     }
 }

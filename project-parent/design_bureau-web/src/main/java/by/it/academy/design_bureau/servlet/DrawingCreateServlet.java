@@ -22,9 +22,9 @@ public class DrawingCreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String name = req.getParameter("name");
         String designation = req.getParameter("designation");
-        Employee developed = ServiceEmployee.getEmployeeByLastName(req.getParameter("developed"));
-        Employee checked = ServiceEmployee.getEmployeeByLastName(req.getParameter("checked"));
-        Employee approved = ServiceEmployee.getEmployeeByLastName(req.getParameter("approved"));
+        Employee developed = ServiceEmployee.getService().getEmployeeByLastName(req.getParameter("developed"));
+        Employee checked = ServiceEmployee.getService().getEmployeeByLastName(req.getParameter("checked"));
+        Employee approved = ServiceEmployee.getService().getEmployeeByLastName(req.getParameter("approved"));
         String isAssembly = req.getParameter("isAssembly");
         Drawing drawing = new Drawing(null, name, designation, developed, checked, approved,
                 isAssembly.equals("true"));

@@ -39,6 +39,11 @@
             <artifactId>taglibs-standard-impl</artifactId>
             <version>1.2.5</version>
         </dependency>
+        <dependency>
+            <groupId>by.it.academy.design_bureau</groupId>
+            <artifactId>design_bureau-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,17 +1,17 @@
 package by.it.academy.design_bureau.service;
 
-import by.it.academy.design_bureau.model_bureau.Employee;
+import by.it.academy.design_bureau.model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceEmployeeImp implements ServiceEmployee {
+public class EmployeeServiceImp implements EmployeeService {
 
-    private static final ServiceEmployee INSTANCE = new ServiceEmployeeImp();
+    private static final EmployeeService INSTANCE = new EmployeeServiceImp();
 
     private final List<Employee> employees;
 
-    public ServiceEmployeeImp() {
+    public EmployeeServiceImp() {
         employees = new ArrayList<>();
         employees.add(new Employee(1L,"Ivan", "Ivanov",
                 "Head of Design Bureau", "210", "****",
@@ -23,7 +23,7 @@ public class ServiceEmployeeImp implements ServiceEmployee {
                 "design engineer", "212", "****",
                 "AlexKb", false));
     }
-    public static ServiceEmployee getService() {
+    public static EmployeeService getService() {
         return INSTANCE;
     }
     @Override

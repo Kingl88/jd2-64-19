@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/servlet_del_drawing")
+@WebServlet(urlPatterns = "/del_drawing")
 public class DrawingDeleteServlet extends HttpServlet {
     private final Service<Drawing> serviceDrawing = DrawingService.getService();
     @Override

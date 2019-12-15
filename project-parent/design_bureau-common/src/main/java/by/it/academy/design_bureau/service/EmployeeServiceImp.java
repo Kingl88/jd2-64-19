@@ -4,24 +4,30 @@ import by.it.academy.design_bureau.model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class EmployeeServiceImp implements EmployeeService {
 
     private static final EmployeeService INSTANCE = new EmployeeServiceImp();
+    private final Map<String, Employee> users = new ConcurrentHashMap<>();
 
     private final List<Employee> employees;
 
     public EmployeeServiceImp() {
         employees = new ArrayList<>();
         employees.add(new Employee(1L,"Ivan", "Ivanov",
-                "Head of Design Bureau", "210", "****",
+                "Head of Design Bureau", "210", "Ivan98",
                 "IvanKb", true));
         employees.add(new Employee(2L,"Pety", "Petrov",
                 "design engineer", "211", "****",
                 "PetyKb", false));
         employees.add(new Employee(3L,"Alex", "Sidorov",
-                "design engineer", "212", "****",
+                "design engineer", "212", "Alex89",
                 "AlexKb", false));
+        users.put("IvanKb", employees.get(0));
+        users.put("AlexKb", employees.get(2));
     }
     public static EmployeeService getService() {
         return INSTANCE;
@@ -54,5 +60,15 @@ public class EmployeeServiceImp implements EmployeeService {
             }
         }
         return null;
+    }
+
+    @Override
+    public Optional<Employee> findUser(String login, String password) {
+        Employee user = users.get(login);
+        if (user != null && password.equals(user.getPassword())) {
+            return Optional.of(user);
+        } else {
+            return Optional.empty();
+        }
     }
 }

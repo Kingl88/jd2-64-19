@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>Create drawing</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
+<jsp:include page="../include/header.jsp"/>
+<%@include file="../include/menu.jsp" %>
 <form method="post" action="${pageContext.request.contextPath}/drawingCreate">
     <label> Название чертежа <input type="text" name="name"/> </label>
     <br>
@@ -46,5 +48,6 @@
     </label>
     <input type="submit">
 </form>
+<%@include file="../include/footer.jsp" %>
 </body>
 </html>

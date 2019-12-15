@@ -11,23 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/servlet_del_employee")
+@WebServlet(urlPatterns = "/del_employee")
 public class EmployeeDeleteServlet extends HttpServlet {
     private final Service<Employee> serviceEmployee = EmployeeServiceImp.getService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        deleteEmployee(req, resp);
+        doPost(req,resp);
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        deleteEmployee(req, resp);
-    }
-
-    private void deleteEmployee (HttpServletRequest req, HttpServletResponse resp) throws IOException{
-        String id = req.getParameter("id");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String id = req.getParameter("id_get");
         serviceEmployee.delete(Long.parseLong(id));
         resp.sendRedirect(req.getContextPath() + "/employeeList");
     }
+
 }

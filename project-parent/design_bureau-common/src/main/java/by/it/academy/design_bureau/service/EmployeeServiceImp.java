@@ -15,6 +15,7 @@ public class EmployeeServiceImp implements EmployeeService {
     private final Map<String, Employee> users = new ConcurrentHashMap<>();
 
     private final List<Employee> employees;
+    private AtomicLong idSeq = new AtomicLong(10);
 
     public EmployeeServiceImp() {
         employees = new ArrayList<>();
@@ -40,7 +41,6 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public void addNew(Employee employee) {
-        AtomicLong idSeq = new AtomicLong(10);
         employee.setId(idSeq.incrementAndGet());
         employees.add(employee);
     }

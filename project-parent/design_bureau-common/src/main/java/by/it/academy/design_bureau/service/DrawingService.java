@@ -12,6 +12,7 @@ public class DrawingService implements Service <Drawing> {
     private static final Service<Drawing> INSTANCE = new DrawingService();
 
     private final List<Drawing> drawings;
+    private AtomicLong idSeq = new AtomicLong(10);
 
     public DrawingService() {
         drawings = new ArrayList<>();
@@ -35,7 +36,6 @@ public class DrawingService implements Service <Drawing> {
 
     @Override
     public void addNew(Drawing drawing) {
-        AtomicLong idSeq = new AtomicLong(10);
         drawing.setId(idSeq.incrementAndGet());
         drawings.add(drawing);
     }

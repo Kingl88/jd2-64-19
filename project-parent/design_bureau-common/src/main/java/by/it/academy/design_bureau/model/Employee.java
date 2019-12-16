@@ -1,4 +1,4 @@
-package by.it.academy.design_bureau.model_bureau;
+package by.it.academy.design_bureau.model;
 
 import java.util.Objects;
 

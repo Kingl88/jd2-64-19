@@ -1,20 +1,22 @@
 package by.it.academy.design_bureau.service;
 
-import by.it.academy.design_bureau.model_bureau.Drawing;
-import by.it.academy.design_bureau.model_bureau.Employee;
+import by.it.academy.design_bureau.model.Drawing;
+import by.it.academy.design_bureau.model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
-public class ServiceDrawing implements Service <Drawing> {
+public class DrawingService implements Service <Drawing> {
 
-    private static final Service<Drawing> INSTANCE = new ServiceDrawing();
+    private static final Service<Drawing> INSTANCE = new DrawingService();
 
     private final List<Drawing> drawings;
+    private AtomicLong idSeq = new AtomicLong(10);
 
-    public ServiceDrawing() {
+    public DrawingService() {
         drawings = new ArrayList<>();
-        ArrayList<Employee> employees = new ArrayList<>(ServiceEmployeeImp.getService().getAll());
+        ArrayList<Employee> employees = new ArrayList<>(EmployeeServiceImp.getService().getAll());
         drawings.add(new Drawing(1L,"Редуктор", "АБВГ.00.00.000СБ",
                 employees.get(1), employees.get(2), employees.get(0), true));
         drawings.add(new Drawing(2L,"Корпус", "АБВГ.00.00.001", employees.get(1), employees.get(2),
@@ -23,7 +25,7 @@ public class ServiceDrawing implements Service <Drawing> {
                 employees.get(0), false));
     }
 
-    public static Service getService() {
+    public static Service<Drawing> getService() {
         return INSTANCE;
     }
 
@@ -34,13 +36,18 @@ public class ServiceDrawing implements Service <Drawing> {
 
     @Override
     public void addNew(Drawing drawing) {
-        drawing.setId((long) drawings.size()+1);
+        drawing.setId(idSeq.incrementAndGet());
         drawings.add(drawing);
     }
 
     @Override
     public void delete(Long id) {
-        drawings.remove(Math.toIntExact(id));
+        for (Drawing drawing: drawings) {
+            if(drawing.getId().equals(id)) {
+                drawings.remove(drawing);
+                return;
+            }
+        }
     }
 
     @Override

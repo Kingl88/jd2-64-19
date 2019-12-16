@@ -1,8 +1,8 @@
-package by.it.academy.design_bureau.servlet;
+package by.it.academy.design_bureau.web.servlet;
 
-import by.it.academy.design_bureau.model_bureau.Drawing;
+import by.it.academy.design_bureau.model.Drawing;
+import by.it.academy.design_bureau.service.DrawingService;
 import by.it.academy.design_bureau.service.Service;
-import by.it.academy.design_bureau.service.ServiceDrawing;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/drawingList")
-public class DrawingList extends HttpServlet {
-    private Service<Drawing> serviceDrawing = ServiceDrawing.getService();
+public class DrawingListServlet extends HttpServlet {
+    private final Service<Drawing> serviceDrawing = DrawingService.getService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Drawing> allDrawing = serviceDrawing.getAll();
         req.setAttribute("drawingList", allDrawing);
-        req.getRequestDispatcher("/WEB-INF/jsp/drawingList.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/drawing/drawingList.jsp").forward(req,resp);
     }
 }

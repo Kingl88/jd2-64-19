@@ -28,7 +28,7 @@
             <td><c:out value="${employee.getPhoneNumber()}"/></td>
             <th>
                 <a:auth path="/del_employee">
-                    <c:url value="/del_employee?id=${employee.getId()-1}" var="delete_link" scope="page"/>
+                    <c:url value="/del_employee?id=${employee.getId()}" var="delete_link" scope="page"/>
                     <a href="${delete_link}">Delete</a>
                 </a:auth>
             </th>

@@ -22,7 +22,7 @@
     <table border="0">
         <tr>
             <td><fmt:message key="login.page.user.name"/></td>
-            <td><input type="text" name="userName" value="${user.login}"/></td>
+            <td><input type="text" name="userName" value="${userName}"/></td>
         </tr>
         <tr>
             <td><fmt:message key="login.page.user.password"/></td>

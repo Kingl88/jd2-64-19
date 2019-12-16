@@ -32,7 +32,7 @@ public class EmployeeCreateServlet extends HttpServlet {
         String password = req.getParameter("password");
         String login = req.getParameter("login");
 
-        LOGGER.info("firstName: {}", firstName);
+        LOGGER.info("Add new employee: firstName: {}, lastName: {}, positionInCompany: {}, phoneNumber: {}.", firstName, lastName, positionInCompany, phoneNumber);
 
         Employee employee = new Employee(null, firstName, lastName, positionInCompany, phoneNumber, password,
                 login, false);

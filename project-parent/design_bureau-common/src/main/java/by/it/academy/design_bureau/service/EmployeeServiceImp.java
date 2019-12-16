@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class EmployeeServiceImp implements EmployeeService {
 
@@ -39,13 +40,19 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public void addNew(Employee employee) {
-        employee.setId((long) employees.size()+1);
+        AtomicLong idSeq = new AtomicLong(10);
+        employee.setId(idSeq.incrementAndGet());
         employees.add(employee);
     }
 
     @Override
     public void delete(Long id) {
-        employees.remove(Math.toIntExact(id));
+        for (Employee emp: employees) {
+            if(emp.getId().equals(id)) {
+                employees.remove(emp);
+                return;
+            }
+        }
     }
 
     @Override
@@ -53,9 +60,9 @@ public class EmployeeServiceImp implements EmployeeService {
         employees.set(Math.toIntExact(id), employee);
     }
     @Override
-    public  Employee getEmployeeByLastName(String lastName) {
+    public  Employee getEmployeeById(Long id) {
         for (Employee emp: employees) {
-            if(emp.getLastName().equals(lastName)){
+            if(emp.getId().equals(id)){
                 return emp;
             }
         }

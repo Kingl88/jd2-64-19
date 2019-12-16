@@ -30,8 +30,6 @@ private final EmployeeService employeeService = EmployeeServiceImp.getService();
         String rememberMeStr = req.getParameter("rememberMe");
         boolean remember = "Y".equals(rememberMeStr);
 
-        req.getParameter("language");
-
         String errorMsg = "";
         boolean hasError = false;
 
@@ -40,7 +38,7 @@ private final EmployeeService employeeService = EmployeeServiceImp.getService();
             errorMsg = "UserName and password should not be empty; ";
         } else {
             Optional<Employee> user = employeeService.findUser(userName, password);
-            if (!user.isPresent()) {
+            if (user.isEmpty()) {
                 hasError = true;
                 errorMsg = "Invalid user name or password";
             } else {
@@ -50,7 +48,7 @@ private final EmployeeService employeeService = EmployeeServiceImp.getService();
 
         if (hasError) {
             req.setAttribute("errorString", errorMsg);
-            req.setAttribute("user", new Employee(null, "*", "*", "*", "*", password, userName, false));
+            req.setAttribute("userName", userName);
             req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/home");

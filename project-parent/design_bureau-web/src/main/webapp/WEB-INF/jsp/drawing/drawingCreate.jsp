@@ -18,7 +18,7 @@
     <label> Разработал
         <select name="developed">
         <c:forEach var="name" items="${names}">
-            <option value="${name.lastName}">${name.firstName} ${name.lastName}</option>
+            <option value="${name.id}">${name.firstName} ${name.lastName}</option>
         </c:forEach>
     </select>
     </label>
@@ -27,7 +27,7 @@
     <label> Проверил
         <select name="checked">
         <c:forEach var="name" items="${names}">
-            <option value="${name.lastName}">${name.firstName} ${name.lastName}</option>
+            <option value="${name.id}">${name.firstName} ${name.lastName}</option>
         </c:forEach>
     </select>
     </label>
@@ -36,7 +36,7 @@
     <label> Утвердил
         <select name="approved">
         <c:forEach var="name" items="${names}">
-            <option value="${name.lastName}">${name.firstName} ${name.lastName}</option>
+            <option value="${name.id}">${name.firstName} ${name.lastName}</option>
         </c:forEach>
     </select>
     </label>

@@ -5,6 +5,7 @@ import by.it.academy.design_bureau.model.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class DrawingService implements Service <Drawing> {
 
@@ -34,13 +35,19 @@ public class DrawingService implements Service <Drawing> {
 
     @Override
     public void addNew(Drawing drawing) {
-        drawing.setId((long) drawings.size()+1);
+        AtomicLong idSeq = new AtomicLong(10);
+        drawing.setId(idSeq.incrementAndGet());
         drawings.add(drawing);
     }
 
     @Override
     public void delete(Long id) {
-        drawings.remove(Math.toIntExact(id));
+        for (Drawing drawing: drawings) {
+            if(drawing.getId().equals(id)) {
+                drawings.remove(drawing);
+                return;
+            }
+        }
     }
 
     @Override

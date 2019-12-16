@@ -22,7 +22,7 @@ public class EmployeeDeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String id = req.getParameter("id_get");
+        String id = req.getParameter("id");
         serviceEmployee.delete(Long.parseLong(id));
         resp.sendRedirect(req.getContextPath() + "/employeeList");
     }

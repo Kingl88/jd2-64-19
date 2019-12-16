@@ -15,16 +15,12 @@ import java.io.IOException;
 public class DrawingDeleteServlet extends HttpServlet {
     private final Service<Drawing> serviceDrawing = DrawingService.getService();
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        deleteDrawing(req, resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        doPost(req,resp);
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        deleteDrawing(req, resp);
-    }
-
-    private void deleteDrawing (HttpServletRequest req, HttpServletResponse resp) throws IOException{
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         String id = req.getParameter("id");
         serviceDrawing.delete(Long.parseLong(id));
         resp.sendRedirect(req.getContextPath() + "/drawingList");

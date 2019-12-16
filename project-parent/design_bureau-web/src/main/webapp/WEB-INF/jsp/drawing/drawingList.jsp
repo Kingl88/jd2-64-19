@@ -31,6 +31,7 @@
             <td><c:out value="${drawing.isAssembly()}"/></td>
             <th>
                 <a:auth path="/del_drawing">
+                    <c:url value="/del_drawing?id=${drawing.getId()-1}" var="delete_link" scope="page"/>
                     <a href="${delete_link}">Delete</a>
                 </a:auth>
             </th>

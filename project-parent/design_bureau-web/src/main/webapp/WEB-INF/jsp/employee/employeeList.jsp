@@ -21,13 +21,14 @@
     <jsp:useBean id="employeeList" scope="request" type="java.util.List"/>
     <c:forEach items="${employeeList}" var="employee">
         <tr>
-            <td><c:out value="${employee.getId()}"/></td>
+            <td><c:out default="id" value="${employee.getId()}"/></td>
             <td><c:out value="${employee.getFirstName()}"/></td>
             <td><c:out value="${employee.getLastName()}"/></td>
             <td><c:out value="${employee.getPositionInCompany()}"/></td>
             <td><c:out value="${employee.getPhoneNumber()}"/></td>
             <th>
                 <a:auth path="/del_employee">
+                    <c:url value="/del_employee?id=${employee.getId()-1}" var="delete_link" scope="page"/>
                     <a href="${delete_link}">Delete</a>
                 </a:auth>
             </th>

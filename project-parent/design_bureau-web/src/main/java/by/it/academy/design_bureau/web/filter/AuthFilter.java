@@ -1,6 +1,8 @@
 package by.it.academy.design_bureau.web.filter;
 
 import by.it.academy.design_bureau.model.Employee;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterChain;
@@ -14,10 +16,15 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = "/*", dispatcherTypes = DispatcherType.REQUEST)
 public class AuthFilter extends HttpFilter {
+
+    private static final Logger logger = LoggerFactory.getLogger(AuthFilter.class);
+
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpSession session = req.getSession(); // получаем сессию.
         Employee user = (Employee) session.getAttribute("user");
+
+        logger.debug("url: {}", req.getRequestURI());
 
         if (user == null
                 && !req.getRequestURI().endsWith("/")

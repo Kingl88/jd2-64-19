@@ -17,8 +17,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <junit.version>4.12</junit.version>
     <slf4j.version>1.7.29</slf4j.version>
     <logback.version>1.2.3</logback.version>
@@ -26,16 +26,25 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- Расширяет стандартный пакет java.lang -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.9</version>
+      </dependency>
+      <!-- Логер обертка над logback -->
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
+      <!-- Логер -->
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
       </dependency>
+      <!-- Тестирование -->
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>

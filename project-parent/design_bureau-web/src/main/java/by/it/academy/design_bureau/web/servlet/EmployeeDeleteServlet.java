@@ -4,7 +4,6 @@ import by.it.academy.design_bureau.model.Employee;
 import by.it.academy.design_bureau.service.EmployeeServiceImp;
 import by.it.academy.design_bureau.service.Service;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package by.it.academy.design_bureau.web;
+package by.it.academy.design_bureau.web.servlet;
 
 import by.it.academy.design_bureau.model.Employee;
 

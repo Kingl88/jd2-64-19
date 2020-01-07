@@ -1,8 +1,8 @@
 package by.it.academy.design_bureau.web.servlet;
 
 import by.it.academy.design_bureau.model.Employee;
-import by.it.academy.design_bureau.service.EmployeeServiceImp;
-import by.it.academy.design_bureau.service.Service;
+import by.it.academy.design_bureau.service.EmployeeService;
+import by.it.academy.design_bureau.service.impl.EmployeeServiceImp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/employeeCreate")
 public class EmployeeCreateServlet extends HttpServlet {
-    private Service<Employee> serviceEmployee = EmployeeServiceImp.getService();
+    private EmployeeService serviceEmployee = EmployeeServiceImp.getService();
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeCreateServlet.class);
 
@@ -26,6 +26,7 @@ public class EmployeeCreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String firstName = req.getParameter("firstName");
+        String middleName = req.getParameter("middleName");
         String lastName = req.getParameter("lastName");
         String positionInCompany = req.getParameter("positionInCompany");
         String phoneNumber = req.getParameter("phoneNumber");
@@ -34,8 +35,8 @@ public class EmployeeCreateServlet extends HttpServlet {
 
         LOGGER.info("Add new employee: firstName: {}, lastName: {}, positionInCompany: {}, phoneNumber: {}.", firstName, lastName, positionInCompany, phoneNumber);
 
-        Employee employee = new Employee(null, firstName, lastName, positionInCompany, phoneNumber, password,
-                login, false);
+        Employee employee = new Employee(null, firstName, middleName, lastName, positionInCompany, phoneNumber, login,
+                password,null, "USER");
         serviceEmployee.addNew(employee);
         resp.sendRedirect(req.getContextPath() + "/employeeList");
     }

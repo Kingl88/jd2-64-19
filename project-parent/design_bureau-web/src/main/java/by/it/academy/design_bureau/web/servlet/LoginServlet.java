@@ -2,7 +2,7 @@ package by.it.academy.design_bureau.web.servlet;
 
 import by.it.academy.design_bureau.model.Employee;
 import by.it.academy.design_bureau.service.EmployeeService;
-import by.it.academy.design_bureau.service.EmployeeServiceImp;
+import by.it.academy.design_bureau.service.impl.EmployeeServiceImp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +36,7 @@ private final EmployeeService employeeService = EmployeeServiceImp.getService();
             hasError = true;
             errorMsg = "UserName and password should not be empty; ";
         } else {
-            Optional<Employee> user = employeeService.findUser(userName, password);
+            Optional<Employee> user = employeeService.findUserByLoginAndPassword(userName, password);
             if (!user.isPresent()) {
                 hasError = true;
                 errorMsg = "Invalid user name or password";

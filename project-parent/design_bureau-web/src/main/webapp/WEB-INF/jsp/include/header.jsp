@@ -3,7 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale scope="session" value="${param.lang}"/>
+<c:if test="${param.lang != null}">
+    <% session.setAttribute("design_bureau_locale", request.getParameter("lang")); %>
+</c:if>
+
+<c:if test="${sessionScope.design_bureau_locale != null}">
+    <fmt:setLocale value="${sessionScope.design_bureau_locale}"/>
+</c:if>
+
 <fmt:setBundle basename="messages"/>
 
 <div style="background: #E0E0E0; height: 55px; padding: 5px;">

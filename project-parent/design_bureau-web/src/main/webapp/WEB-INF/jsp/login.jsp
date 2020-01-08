@@ -5,7 +5,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang = ${param.lang}>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>

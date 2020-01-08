@@ -17,6 +17,11 @@
     <name>design_bureau-web</name>
 
     <dependencies>
+        <!-- Полнофункциональный пакет служебных классов, предназначенный для расширения функциональности Java API  -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
         <!-- Пакет предоставляющий интерфейсы и классы для создания сервлетов -->
         <dependency>
             <groupId>javax.servlet</groupId>

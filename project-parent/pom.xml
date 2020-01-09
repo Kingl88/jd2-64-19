@@ -13,6 +13,7 @@
   <modules>
     <module>design_bureau-common</module>
     <module>design_bureau-web</module>
+    <module>common-hibernate</module>
   </modules>
 
   <properties>

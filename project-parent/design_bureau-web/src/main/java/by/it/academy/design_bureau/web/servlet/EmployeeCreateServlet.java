@@ -1,6 +1,7 @@
 package by.it.academy.design_bureau.web.servlet;
 
 import by.it.academy.design_bureau.model.Employee;
+import by.it.academy.design_bureau.security.EncryptUtils;
 import by.it.academy.design_bureau.service.EmployeeService;
 import by.it.academy.design_bureau.service.impl.EmployeeServiceImp;
 import org.slf4j.Logger;
@@ -36,7 +37,7 @@ public class EmployeeCreateServlet extends HttpServlet {
         LOGGER.info("Add new employee: firstName: {}, lastName: {}, positionInCompany: {}, phoneNumber: {}.", firstName, lastName, positionInCompany, phoneNumber);
 
         Employee employee = new Employee(null, firstName, middleName, lastName, positionInCompany, phoneNumber, login,
-                password,null, "USER");
+                password, EncryptUtils.generateSaltString(), "USER");
         serviceEmployee.addNew(employee);
         resp.sendRedirect(req.getContextPath() + "/employeeList");
     }

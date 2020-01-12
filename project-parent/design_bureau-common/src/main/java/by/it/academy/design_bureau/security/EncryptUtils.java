@@ -15,7 +15,7 @@ public class EncryptUtils {
     public static String getSHA256(String input, String salt) { //метод для шифрования по алгоритму SHA-256.
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256"); // содание экземпляра класса MessageDigest использующий алгоритм шифрования SHA-256.
-            md.reset(); // како-то сброс по умолчанию. ???
+            md.reset(); // обнуление дайджест сообщения (для подстраховки, на всякий случай).
             md.update(stringToBytes(salt)); // используем метод так как включаем в сообщение несколько блоков ( нашу "соль" и сообщение).
             byte[] digest = md.digest(input.getBytes(StandardCharsets.UTF_8)); // тоже самое что и --->
             //md.update(input.getBytes(StandardCharsets.UTF_8));
@@ -38,7 +38,7 @@ public class EncryptUtils {
         return byteToString(generateSalt());
     }
 
-    public static String byteToString(byte[] salt) { // шифруем массив байтов "соли".
+    public static String byteToString(byte[] salt) { // переводим массив байт в строку.
         return Base64.getEncoder().encodeToString(salt);
     }
 

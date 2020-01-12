@@ -17,6 +17,9 @@
     <label> Имя: <input type="text" name="firstName"/></label>
     <br>
     <br>
+    <label> Имя: <input type="text" name="middleName"/></label>
+    <br>
+    <br>
     <label> Фамилия: <input type="text" name="lastName"/> </label>
     <br>
     <br>

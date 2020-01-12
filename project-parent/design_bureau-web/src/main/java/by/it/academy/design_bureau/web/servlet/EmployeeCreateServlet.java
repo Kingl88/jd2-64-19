@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/employeeCreate")
+@WebServlet(urlPatterns = "/admin/employeeCreate")
 public class EmployeeCreateServlet extends HttpServlet {
     private EmployeeService serviceEmployee = EmployeeServiceImp.getService();
 
@@ -39,6 +39,6 @@ public class EmployeeCreateServlet extends HttpServlet {
         Employee employee = new Employee(null, firstName, middleName, lastName, positionInCompany, phoneNumber, login,
                 password, EncryptUtils.generateSaltString(), "USER");
         serviceEmployee.addNew(employee);
-        resp.sendRedirect(req.getContextPath() + "/employeeList");
+        resp.sendRedirect(req.getContextPath() + "/admin/employeeList");
     }
 }

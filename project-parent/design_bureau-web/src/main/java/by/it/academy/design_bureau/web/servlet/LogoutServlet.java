@@ -1,5 +1,7 @@
 package by.it.academy.design_bureau.web.servlet;
 
+import by.it.academy.design_bureau.web.util.CookieUtils;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
+        CookieUtils.removeCookie(resp);
         resp.sendRedirect(req.getContextPath() + "/home");
     }
 }

@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="../include/header.jsp"/>
 <%@include file="../include/menu.jsp" %>
-<form method="post" action="${pageContext.request.contextPath}/employeeCreate">
+<form method="post" action="${pageContext.request.contextPath}/admin/employeeCreate">
     <label> Логин: <input type="text" name="login"/> </label>
     <br>
     <br>

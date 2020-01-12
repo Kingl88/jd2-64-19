@@ -19,7 +19,7 @@ public class CookieUtils {
         response.addCookie(cookie); // установка cookie.
     }
 
-    public static Optional<Long> getAuthUserId(HttpServletRequest request) { // метод получения IdUser'a из массива полученных cookie.
+    public static Optional<Long> getAuthUserId(HttpServletRequest request) { // метод получения IdUser'a из массива полученных cookie в виде Optional объекта.
         Cookie[] cookies = request.getCookies(); // получаем массив всех cookie.
         if (cookies == null) {
             return Optional.empty(); // возвращаем пустой объект.

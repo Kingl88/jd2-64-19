@@ -4,29 +4,23 @@ import by.it.academy.design_bureau.model.Employee;
 
 import java.util.Objects;
 
-public class UserAccount {
+public class UserAccount { // будем использовать в куки и везде где нужен только логин и права доступа.
     private final String userId;
-    private final String userName;
+    private final String userNameLogin;
     private final String role;
 
     public UserAccount(Employee employee) {
         this.userId = String.valueOf(employee.getId());
-        this.userName = employee.getLogin();
+        this.userNameLogin = employee.getLogin();
         this.role = employee.getRole();
-    }
-
-    public UserAccount(String userId, String userName, String role) {
-        this.userId = userId;
-        this.userName = userName;
-        this.role = role;
     }
 
     public String getUserId() {
         return userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserNameLogin() {
+        return userNameLogin;
     }
 
     public String getRole() {
@@ -39,20 +33,20 @@ public class UserAccount {
         if (o == null || getClass() != o.getClass()) return false;
         UserAccount that = (UserAccount) o;
         return Objects.equals(userId, that.userId) &&
-                Objects.equals(userName, that.userName) &&
+                Objects.equals(userNameLogin, that.userNameLogin) &&
                 Objects.equals(role, that.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, userName, role);
+        return Objects.hash(userId, userNameLogin, role);
     }
 
     @Override
     public String toString() {
         return "UserAccount{" +
                 "userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
+                ", userName='" + userNameLogin + '\'' +
                 ", role='" + role + '\'' +
                 '}';
     }

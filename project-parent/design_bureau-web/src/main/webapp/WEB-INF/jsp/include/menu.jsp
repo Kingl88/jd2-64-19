@@ -6,11 +6,42 @@
 
     <a href="${pageContext.request.contextPath}/">Home</a>
     |
-    <a href="${pageContext.request.contextPath}/user/employeeList">Employee List</a>
+    <c:set var="user" value="${sessionScope.auth_user}"/>
+    <c:choose>
+        <c:when test="${user.role.equals('ADMIN')}">
+            <a href="${pageContext.request.contextPath}/admin/employeeList">Employee List</a>
+        </c:when>
+        <c:when test="${user.role.equals('USER')}">
+            <a href="${pageContext.request.contextPath}/user/employeeList">Employee List</a>
+        </c:when>
+        <c:otherwise>
+            <a href="${pageContext.request.contextPath}/user/employeeList">Employee List</a>
+        </c:otherwise>
+    </c:choose>
     |
-    <a href="${pageContext.request.contextPath}/user/drawingList">Drawing List</a>
+    <c:choose>
+        <c:when test="${user.role.equals('ADMIN')}">
+            <a href="${pageContext.request.contextPath}/admin/drawingList">Drawing List</a>
+        </c:when>
+        <c:when test="${user.role.equals('USER')}">
+            <a href="${pageContext.request.contextPath}/user/drawingList">Drawing List</a>
+        </c:when>
+        <c:otherwise>
+            <a href="${pageContext.request.contextPath}/user/drawingList">Drawing List</a>
+        </c:otherwise>
+    </c:choose>
     |
-    <a href="${pageContext.request.contextPath}/user/userInfo">My Account Info</a>
+    <c:choose>
+        <c:when test="${user.role.equals('ADMIN')}">
+            <a href="${pageContext.request.contextPath}/admin/userInfo">My Account Info</a>
+        </c:when>
+        <c:when test="${user.role.equals('USER')}">
+            <a href="${pageContext.request.contextPath}/user/userInfo">My Account Info</a>
+        </c:when>
+        <c:otherwise>
+            <a href="${pageContext.request.contextPath}/user/userInfo">My Account Info</a>
+        </c:otherwise>
+    </c:choose>
     |
     <a href="${pageContext.request.contextPath}/login">Login</a>
 

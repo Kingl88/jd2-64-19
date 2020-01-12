@@ -14,8 +14,8 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
     private static final EmployeeDaoImpl INSTANCE = new EmployeeDaoImpl();
 
     public static final String INSERT_EMPLOYEE = "INSERT INTO employees (first_name, middle_name, last_name, position_in_company, phone, login, password, salt, role_id) VALUE (?,?,?,?,?,?,?,?,?)";
-    public static final String SELECT_EMPLOYEE_BY_ID = "SELECT * FROM employees WHERE id = ?";
-    public static final String SELECT_ALL_EMPLOYEE = "SELECT * FROM employees";
+    public static final String SELECT_EMPLOYEE_BY_ID = "SELECT * FROM employees e JOIN role r on e.role_id = r.id WHERE e.id = ?";
+    public static final String SELECT_ALL_EMPLOYEE = "SELECT * FROM employees e JOIN role r on e.role_id = r.id";
     public static final String SELECT_ALL_ROLE = "SELECT * FROM role";
     public static final String UPDATE_EMPLOYEE = "UPDATE employees  SET first_name = ? , middle_name = ?, last_name = ?, phone = ?, position_in_company = ? WHERE id = ?";
     public static final String DELETE_EMPLOYEE_BY_ID = "DELETE FROM employees WHERE id = ?";
@@ -74,7 +74,7 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
         ResultSet resultSet = null;
         Optional<Employee> result = Optional.empty(); // создаем пустой объект Optional.
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_EMPLOYEE_BY_ID)) { // входной параметр id.
+             PreparedStatement statement = connection.prepareStatement(SELECT_EMPLOYEE_BY_ID);) { // входной параметр id.
 
             statement.setLong(1, id);
 //Для метода executeQuery, возвращающий набор данных, оператор считается завершенным,
@@ -120,7 +120,7 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
         ResultSet resultSet = null;
         List<Employee> result = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_EMPLOYEE)) {
+             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_EMPLOYEE);) {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -142,7 +142,8 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
         String phone = resultSet.getString("phone");
         String position_in_company = resultSet.getString("position_in_company");
         String login = resultSet.getString("login");
-        return new Employee(userId, firstName, middleName, lastName, position_in_company, phone, login, null, null, "USER");
+        String role = resultSet.getString("role_name");
+        return new Employee(userId, firstName, middleName, lastName, position_in_company, phone, login, null, null, role);
     }
 
     @Override

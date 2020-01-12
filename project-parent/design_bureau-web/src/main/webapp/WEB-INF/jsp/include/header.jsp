@@ -20,7 +20,7 @@
 
     <div style="float: right; padding: 15px; text-align: right;">
         <!-- User store in session with attribute: loginedUser -->
-        <c:if test="${user != null}"> Hello <b>${user.login}</b>
+        <c:if test="${sessionScope.auth_user != null}"> Hello <b>${sessionScope.auth_user.userNameLogin}</b>
             <a href="${pageContext.request.contextPath}/logout">logout</a>
         </c:if>
     </div>

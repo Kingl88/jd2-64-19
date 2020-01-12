@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import java.util.ResourceBundle;
 
 @WebListener()
-public class BureauContextInitListener implements ServletContextListener {
+public class BureauContextInitListener implements ServletContextListener { // класс "слушателя", запускается перед запуском приложения.
 
     private static final Logger logger = LoggerFactory.getLogger(BureauContextInitListener.class);
 

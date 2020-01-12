@@ -1,10 +1,12 @@
 package by.it.academy.design_bureau.web.tags.custom;
 
-import by.it.academy.design_bureau.model.Employee;
+import by.it.academy.design_bureau.web.dto.UserAccount;
+import by.it.academy.design_bureau.web.util.CookieUtils;
+import by.it.academy.design_bureau.web.util.SessionUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.ConditionalTagSupport;
+import java.util.Optional;
 
 public class AuthTag extends ConditionalTagSupport {
 
@@ -13,10 +15,10 @@ public class AuthTag extends ConditionalTagSupport {
     @Override
     protected boolean condition() {
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
-        HttpSession session = request.getSession();
-        Employee user = (Employee) session.getAttribute("user");
+        Optional<UserAccount> user = SessionUtils.getUserAccount(request);
 
-        return user != null && user.getRole().equals("ADMIN");
+
+        return (user.isPresent() && user.get().getRole().equals("ADMIN"));
     }
 
     public void setPath(String path) {

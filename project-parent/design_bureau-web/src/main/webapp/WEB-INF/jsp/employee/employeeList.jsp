@@ -27,8 +27,8 @@
             <td><c:out value="${employee.getPositionInCompany()}"/></td>
             <td><c:out value="${employee.getPhoneNumber()}"/></td>
             <th>
-                <a:auth path="/del_employee">
-                    <c:url value="/del_employee?id=${employee.getId()}" var="delete_link" scope="page"/>
+                <a:auth path="/admin/del_employee">
+                    <c:url value="/admin/del_employee?id=${employee.getId()}" var="delete_link" scope="page"/>
                     <a href="${delete_link}">Delete</a>
                 </a:auth>
             </th>
@@ -36,7 +36,7 @@
     </c:forEach>
 </table>
 <p>
-    <c:url value="/employeeCreate" var="add" scope="page"/>
+    <c:url value="/admin/employeeCreate" var="add" scope="page"/>
     <a href="${add}">Add new Employee</a>
 </p>
 <%@include file="../include/footer.jsp" %>

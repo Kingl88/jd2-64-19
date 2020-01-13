@@ -37,13 +37,13 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public Employee addNew(Employee employee) {
-        logger.debug("add new student {}", employee);
+        logger.debug("add new employee {}", employee);
         try {
             Long id = employeeDao.create(employee);
             employee.setId(id);
             logger.debug("result {}", id);
         } catch (SQLException e) {
-            logger.error("Error while creating student " + employee, e);
+            logger.error("Error while creating employee " + employee, e);
         }
         return employee;
     }

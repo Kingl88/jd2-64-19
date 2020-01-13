@@ -16,7 +16,6 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
     public static final String INSERT_EMPLOYEE = "INSERT INTO employees (first_name, middle_name, last_name, position_in_company, phone, login, password, salt, role_id) VALUE (?,?,?,?,?,?,?,?,?)";
     public static final String SELECT_EMPLOYEE_BY_ID = "SELECT * FROM employees e JOIN role r on e.role_id = r.id WHERE e.id = ?";
     public static final String SELECT_ALL_EMPLOYEE = "SELECT * FROM employees e JOIN role r on e.role_id = r.id";
-    public static final String SELECT_ALL_ROLE = "SELECT * FROM role";
     public static final String UPDATE_EMPLOYEE = "UPDATE employees  SET first_name = ? , middle_name = ?, last_name = ?, phone = ?, position_in_company = ? WHERE id = ?";
     public static final String DELETE_EMPLOYEE_BY_ID = "DELETE FROM employees WHERE id = ?";
     public static final String SELECT_BY_EMPLOYEE_LOGIN = "SELECT * FROM employees e JOIN role r on e.role_id = r.id WHERE e.login = ?";
@@ -33,13 +32,11 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
     @Override
     public Long create(Employee employee) throws SQLException {
         ResultSet resultSet = null; // интерфейс для работы с результатом запроса
-        ResultSet resultSet_role = null; // интерфейс для работы с результатом запроса
         Long result = null;
         try (Connection connection = getConnection();
              //PreparedStatement - класс используется для выполнения SQL-запросов с или без входных параметров; добавляет методы управления входными параметрами.
              //Statement.RETURN_GENERATED_KEYS - флаг говорящий о том что сгенерированный ключ должен быть доступен для "извлечения".
-             PreparedStatement statement = connection.prepareStatement(INSERT_EMPLOYEE, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement statement_role = connection.prepareStatement(SELECT_ALL_ROLE)) {
+             PreparedStatement statement = connection.prepareStatement(INSERT_EMPLOYEE, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, employee.getFirstName()); // записываем имя.
             statement.setString(2, employee.getMiddleName()); // записываем отчество.
             statement.setString(3, employee.getLastName()); // записываем фамилию.
@@ -48,13 +45,7 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
             statement.setString(6, employee.getLogin()); // записываем логин.
             statement.setString(7, employee.getPassword()); // записываем пароль.
             statement.setString(8, employee.getSalt()); // записываем "соль".
-           resultSet_role = statement_role.executeQuery();
-            while (resultSet_role.next()){
-                if(resultSet_role.getString(2).equals(employee.getRole())){
-                    statement.setInt(9, resultSet_role.getInt(1)); // записываем "права доступа".
-                    break;
-                }
-            }
+            statement.setInt(9,Integer.parseInt(employee.getRole())); // записываем "роль".
             statement.executeUpdate(); // метод для завершения выполнения запросов.
 
             resultSet = statement.getGeneratedKeys(); // метод для получения сгенерированных ключей.
@@ -64,7 +55,6 @@ public class EmployeeDaoImpl extends AbstractDao implements EmployeeDao {
             }
         } finally {
             closeQuietly(resultSet); // закрываем resultSet.
-            closeQuietly(resultSet_role); // закрываем resultSet.
         }
         return result; // результатом возвращаем автоматически сгенерированный id.
     }

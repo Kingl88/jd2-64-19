@@ -28,6 +28,15 @@
     <br>
     <label> Номер телефона: <input type="text" name="phoneNumber"/> </label>
     <br>
+    <br>
+    <label> Права доступа
+        <select name="roleId">
+            <c:forEach var="role" items="${roles}">
+                <option value="${role.key}">${role.value}</option>
+            </c:forEach>
+        </select>
+    </label>
+    <br>
     <input type="submit">
 </form>
 <%@include file="../include/footer.jsp" %>

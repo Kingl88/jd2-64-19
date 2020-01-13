@@ -1,5 +1,6 @@
 package by.it.academy.design_bureau.web.servlet;
 
+import by.it.academy.design_bureau.dao.impl.RoleDaoImpl;
 import by.it.academy.design_bureau.model.Employee;
 import by.it.academy.design_bureau.security.EncryptUtils;
 import by.it.academy.design_bureau.service.EmployeeService;
@@ -13,15 +14,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
 
 @WebServlet(urlPatterns = "/admin/employeeCreate")
 public class EmployeeCreateServlet extends HttpServlet {
     private EmployeeService serviceEmployee = EmployeeServiceImp.getService();
+    private RoleDaoImpl roleDao = RoleDaoImpl.getInstance();
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeCreateServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            req.setAttribute("roles", roleDao.getRole());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         req.getRequestDispatcher("/WEB-INF/jsp/employee/employeeCreate.jsp").forward(req, resp);
     }
     @Override
@@ -33,11 +42,12 @@ public class EmployeeCreateServlet extends HttpServlet {
         String phoneNumber = req.getParameter("phoneNumber");
         String password = req.getParameter("password");
         String login = req.getParameter("login");
+        Integer roleId = Integer.parseInt(req.getParameter("roleId"));
 
         LOGGER.info("Add new employee: firstName: {}, lastName: {}, positionInCompany: {}, phoneNumber: {}.", firstName, lastName, positionInCompany, phoneNumber);
 
         Employee employee = new Employee(null, firstName, middleName, lastName, positionInCompany, phoneNumber, login,
-                password, EncryptUtils.generateSaltString(), "USER");
+                password, EncryptUtils.generateSaltString(), roleId.toString());
         serviceEmployee.addNew(employee);
         resp.sendRedirect(req.getContextPath() + "/admin/employeeList");
     }

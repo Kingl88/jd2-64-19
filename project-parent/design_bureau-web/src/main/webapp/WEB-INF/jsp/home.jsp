@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <fmt:setLocale scope="session" value="${param.lang}"/>
-    <fmt:setBundle basename="messages"/>
+    <%@include file="include/header.jsp" %>
     <title><fmt:message key="home.page.header"/></title>
 </head>
 <body>
 
-<%@include file="include/header.jsp" %>
+
+
 <%@include file="include/menu.jsp" %>
 
 <h3><fmt:message key="home.page.header"/></h3>

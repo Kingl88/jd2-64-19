@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/*")
+@WebFilter(urlPatterns = "/*") // здесь вообще нету ни какого "DispatcherType"???
 public class EncodingFilter extends HttpFilter {
 
     @Override

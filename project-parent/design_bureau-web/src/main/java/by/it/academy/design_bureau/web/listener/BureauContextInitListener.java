@@ -12,17 +12,18 @@ import javax.sql.DataSource;
 import java.util.ResourceBundle;
 
 @WebListener()
-public class BureauContextInitListener implements ServletContextListener {
+public class BureauContextInitListener implements ServletContextListener { // класс "слушателя", запускается перед запуском приложения.
 
     private static final Logger logger = LoggerFactory.getLogger(BureauContextInitListener.class);
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
-            ResourceBundle bundle = ResourceBundle.getBundle("mysql_hikari");
-            ElDataSource.configure(bundle);
-            DataSource dataSource = ElDataSource.getDataSource();
-            DbMigration.migrate(dataSource);
+            ResourceBundle bundle = ResourceBundle.getBundle("mysql_hikari"); // создаем "bundle"-объект.
+            ElDataSource.configure(bundle); // настраиваем соединение с базой данных.
+            DataSource dataSource = ElDataSource.getDataSource(); // получаем соединение с базой данных.
+            DbMigration.migrate(dataSource); // провеяем актуальность присоединенной базы данной с хранящейся в истории запросов,
+            // как я понимаю на этом этапе мы сверяем что у нас хранится в "flyway_schema_history" с тем что у нас есть в папке "db.migration"???
         } catch (Exception e) {
             logger.error("error", e);
             throw new RuntimeException("Datasource initialisation error", e);

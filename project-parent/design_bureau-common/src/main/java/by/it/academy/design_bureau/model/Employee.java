@@ -5,43 +5,35 @@ import java.util.Objects;
 public class Employee {
     private Long id;
     private String firstName; //имя.
+    private String middleName; //отчество.
     private String lastName; //фамилия.
     private String positionInCompany; //должность.
     private String phoneNumber; //номер телефона.
+    private String login; //логин.
     private String password; //пароль.
-    private String login; //логин
-    private boolean isAdmin; // права доступа.
+    private String salt; //"соль".
+    private String role; // права доступа.
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return isAdmin == employee.isAdmin &&
+        return Objects.equals(id, employee.id) &&
                 Objects.equals(firstName, employee.firstName) &&
+                Objects.equals(middleName, employee.middleName) &&
                 Objects.equals(lastName, employee.lastName) &&
                 Objects.equals(positionInCompany, employee.positionInCompany) &&
                 Objects.equals(phoneNumber, employee.phoneNumber) &&
                 Objects.equals(password, employee.password) &&
-                Objects.equals(login, employee.login);
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", positionInCompany='" + positionInCompany + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", password='" + password + '\'' +
-                ", login='" + login + '\'' +
-                ", isAdmin=" + isAdmin +
-                '}';
+                Objects.equals(salt, employee.salt) &&
+                Objects.equals(login, employee.login) &&
+                Objects.equals(role, employee.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, positionInCompany, phoneNumber, password, login, isAdmin);
+        return Objects.hash(id, firstName, middleName, lastName, positionInCompany, phoneNumber, password, salt, login, role);
     }
 
     public Long getId() {
@@ -88,6 +80,14 @@ public class Employee {
         return password;
     }
 
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -100,22 +100,32 @@ public class Employee {
         this.login = login;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public String getRole() {
+        return role;
     }
 
-    public Employee(Long id, String firstName, String lastName, String positionInCompany, String phoneNumber, String password, String login, boolean isAdmin) {
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Employee(Long id, String firstName, String middleName, String lastName, String positionInCompany, String phoneNumber, String login, String password, String salt, String role) {
         this.id = id;
         this.firstName = firstName;
+        this.middleName = middleName;
         this.lastName = lastName;
         this.positionInCompany = positionInCompany;
         this.phoneNumber = phoneNumber;
-        this.password = password;
         this.login = login;
-        this.isAdmin = isAdmin;
+        this.password = password;
+        this.salt = salt;
+        this.role = role;
     }
 }

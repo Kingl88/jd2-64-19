@@ -36,7 +36,7 @@ public final class ElDataSource {
         return dataSource;
     }
 
-    private static void check() throws SQLException { //проверка получено соединение или нет.
+    private static void check() throws SQLException { //проверяем выполнение конфигурации перед получением соединения.
         if (dataSource == null) {
             throw new SQLException("Datasource is null; Need to call init() first");
         }

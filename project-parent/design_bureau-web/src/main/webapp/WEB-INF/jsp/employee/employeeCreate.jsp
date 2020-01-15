@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="../include/header.jsp"/>
 <%@include file="../include/menu.jsp" %>
-<form method="post" action="${pageContext.request.contextPath}/employeeCreate">
+<form method="post" action="${pageContext.request.contextPath}/admin/employeeCreate">
     <label> Логин: <input type="text" name="login"/> </label>
     <br>
     <br>
@@ -17,6 +17,9 @@
     <label> Имя: <input type="text" name="firstName"/></label>
     <br>
     <br>
+    <label> Имя: <input type="text" name="middleName"/></label>
+    <br>
+    <br>
     <label> Фамилия: <input type="text" name="lastName"/> </label>
     <br>
     <br>
@@ -24,6 +27,15 @@
     <br>
     <br>
     <label> Номер телефона: <input type="text" name="phoneNumber"/> </label>
+    <br>
+    <br>
+    <label> Права доступа
+        <select name="roleId">
+            <c:forEach var="role" items="${roles}">
+                <option value="${role.key}">${role.value}</option>
+            </c:forEach>
+        </select>
+    </label>
     <br>
     <input type="submit">
 </form>

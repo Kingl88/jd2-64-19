@@ -5,7 +5,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang = ${param.lang}>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -41,8 +41,8 @@
     </table>
 </form>
 
-<p style="color:blue;">Admin User: IvanKb password: Ivan98</p>
-<p style="color:blue;">Simple User: AlexKb password: Alex89</p>
+<p style="color:blue;">Admin User: Ivan88 password: pass</p>
+<p style="color:blue;">Simple User: Pety90 password: pass1</p>
 <jsp:include page="include/footer.jsp"/>
 </body>
 </html>

@@ -19,13 +19,13 @@ public class PersonDAO {
         session.beginTransaction();
         try {
             session.save(person);
+            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         } finally {
             session.close();
         }
-        session.getTransaction().commit();
     }
 
     public static void update(Person person, Long id) {
@@ -34,13 +34,13 @@ public class PersonDAO {
         person.setId(id);
         try {
             session.update(person);
+            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         } finally {
             session.close();
         }
-        session.getTransaction().commit();
     }
 
     public static void delete(Long id) {
@@ -50,13 +50,13 @@ public class PersonDAO {
         person.setId(id);
         try {
             session.delete(person);
+            session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         } finally {
             session.close();
         }
-        session.getTransaction().commit();
     }
 
     public static void read(Long id) {

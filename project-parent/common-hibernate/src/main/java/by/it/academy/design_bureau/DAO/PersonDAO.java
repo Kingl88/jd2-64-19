@@ -17,7 +17,14 @@ public class PersonDAO {
     public static void create(Person person) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.save(person);
+        try {
+            session.save(person);
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
         session.getTransaction().commit();
     }
 
@@ -25,7 +32,14 @@ public class PersonDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         person.setId(id);
-        session.update(person);
+        try {
+            session.update(person);
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
         session.getTransaction().commit();
     }
 
@@ -34,7 +48,14 @@ public class PersonDAO {
         session.beginTransaction();
         Person person = new Person();
         person.setId(id);
-        session.delete(person);
+        try {
+            session.delete(person);
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
         session.getTransaction().commit();
     }
 

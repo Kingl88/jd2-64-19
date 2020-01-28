@@ -1,7 +1,5 @@
 package by.it.academy.design_bureau;
 
-import by.it.academy.design_bureau.DAO.PersonDAO;
-import by.it.academy.design_bureau.entity.Person;
 import by.it.academy.design_bureau.util.HibernateUtil;
 import org.hibernate.Session;
 

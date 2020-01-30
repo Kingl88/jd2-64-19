@@ -1,7 +1,6 @@
 package by.it.academy.design_bureau;
 
 import by.it.academy.design_bureau.entity.Employee;
-import by.it.academy.design_bureau.entity.EmployeeDetail;
 import by.it.academy.design_bureau.util.HibernateUtil;
 import org.hibernate.Session;
 

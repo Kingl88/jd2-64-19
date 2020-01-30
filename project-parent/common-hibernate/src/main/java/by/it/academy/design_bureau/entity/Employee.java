@@ -3,6 +3,7 @@ package by.it.academy.design_bureau.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -23,24 +24,10 @@ public class Employee {
     @Column(name = "EMPLOYEE_ID", unique = true)
     @Access(AccessType.PROPERTY)
     private Long employeeId;
-    @Column(name = "FIRST_NAME")
-    private String firstName;
-    @Column(name = "LAST_NAME")
-    private String lastName;
-    private LocalDateTime date;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "employee"
-            , cascade = CascadeType.ALL)
-    @Access(AccessType.PROPERTY)
-    private EmployeeDetail employeeDetail;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "DEPARTMENT_ID")
-    private Department department;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "EMPLOYEE_MEETING",
-            joinColumns = {@JoinColumn(name = "EMPLOYEE_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "MEETING_ID")})
-    private List<Meeting> meetings = new ArrayList<>();
+    @Column(name = "NAME")
+    private String name;
+    @Column(name = "Salary")
+    private Long salary;
+    @Column(name = "Age")
+    private int age;
 }

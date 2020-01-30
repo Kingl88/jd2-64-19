@@ -26,8 +26,7 @@ public class Employee {
     private String lastName;
     private LocalDateTime date;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "employee"
-            , cascade = CascadeType.ALL)
-    @Access(AccessType.PROPERTY)
-    private EmployeeDetail employeeDetail;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEPARTMENT_ID")
+    private Department department;
 }

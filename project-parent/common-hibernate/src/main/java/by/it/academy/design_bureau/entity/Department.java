@@ -10,16 +10,16 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "DEPARTAMENT")
-public class Departament {
+@Table(name = "DEPARTMENT")
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "DEPARTAMENT_ID", unique = true)
+    @Column(name = "DEPARTMENT_ID", unique = true)
     private Long departmentId;
     @Column(name = "NAME")
     private String departmentName;
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private Set<Employee> employees = new HashSet<>();
-    public Departament(String name) {this.departmentName = name;}
+    public Department(String name) {this.departmentName = name;}
 }

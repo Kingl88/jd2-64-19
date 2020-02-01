@@ -1,6 +1,7 @@
 package by.it.academy.design_bureau;
 
 import by.it.academy.design_bureau.DAO.impl.EmployeeDAOImplHQL;
+import by.it.academy.design_bureau.entity.Department;
 import by.it.academy.design_bureau.entity.Employee;
 import by.it.academy.design_bureau.util.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -33,11 +34,13 @@ public class App {
     public static void add(SessionFactory sessionFactory){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Employee employee = new Employee(null, "Ivan", 568L, 25);
+        Department department = new Department("HR");
+        session.save(department);
+        Employee employee = new Employee(null, "Ivan", 568L, 25, "HR");
         session.save(employee);
-        Employee employee1 = new Employee(null, null, 1000L, 30);
+        Employee employee1 = new Employee(null, null, 1000L, 30, "HR");
         session.save(employee1);
-        Employee employee2 = new Employee(null, "Pety", 1200L, 35);
+        Employee employee2 = new Employee(null, "Pety", 1200L, 35, "QA");
         session.save(employee2);
         session.getTransaction().commit();
         session.close();

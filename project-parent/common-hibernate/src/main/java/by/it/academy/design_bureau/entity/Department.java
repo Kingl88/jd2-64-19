@@ -22,4 +22,8 @@ public class Department {
     private String departmentName;
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Employee> employees = new HashSet<>();
+
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
 }

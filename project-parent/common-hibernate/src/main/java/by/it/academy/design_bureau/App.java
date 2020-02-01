@@ -36,11 +36,13 @@ public class App {
         session.beginTransaction();
         Department department = new Department("HR");
         session.save(department);
-        Employee employee = new Employee(null, "Ivan", 568L, 25, "HR");
+        Department department1 = new Department("QA");
+        session.save(department1);
+        Employee employee = new Employee(null, "Ivan", 568L, 25, department);
         session.save(employee);
-        Employee employee1 = new Employee(null, null, 1000L, 30, "HR");
+        Employee employee1 = new Employee(null, null, 1000L, 30, department);
         session.save(employee1);
-        Employee employee2 = new Employee(null, "Pety", 1200L, 35, "QA");
+        Employee employee2 = new Employee(null, "Pety", 1200L, 35, department1);
         session.save(employee2);
         session.getTransaction().commit();
         session.close();

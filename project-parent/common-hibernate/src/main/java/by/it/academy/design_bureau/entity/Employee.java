@@ -30,4 +30,8 @@ public class Employee {
     private Long salary;
     @Column(name = "Age")
     private int age;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DEPARTMENT_ID")
+    private Department department;
 }

@@ -6,33 +6,33 @@ import java.util.List;
 
 public interface EmployeeDAO<T> {
 
-    List<Employee> getAll(T session);
+    List<Employee> getAll(T object);
 
-    List<Employee> getByName(T session, String name);
-//
-//    List<Employee> getAllWithNameNotNull();
-//
-//    List<Employee> getSalaryGraterThan(Long salary);
-//
-//    List<Employee> getSalaryGraterThanOrderDesc(Long salary);
-//
-//    List<Employee> getSalaryLessOrEqual(Long salary);
-//
-//    List<Employee> getByAgeBetween(Integer from, Integer to);
-//
-//    List<Employee> getByAgeAndName(String name, Integer age);
-//
-//    List<Employee> getByAgeOrName(String name, Integer age);
-//
-//
-//    // aggregation
-//    long getEmployeeCount();
-//
-//    Double getAverageSalary();
-//
-//    Double getMaxSalary();
-//
-//    long getMinAge();
-//
+    List<Employee> getByName(T object, String name);
+
+    List<Employee> getAllWithNameNotNull(T object);
+
+    List<Employee> getSalaryGraterThan(T object, Long salary);
+
+    List<Employee> getSalaryGraterThanOrderDesc(T object, Long salary);
+
+    List<Employee> getSalaryLessOrEqual(T object, Long salary);
+
+    List<Employee> getByAgeBetween(T object, Integer from, Integer to);
+
+    List<Employee> getByAgeAndName(T object, String name, Integer age);
+
+    List<Employee> getByAgeOrName(T object, String name, Integer age);
+
+
+    // aggregation
+    long getEmployeeCount(T object);
+
+    Double getAverageSalary(T object);
+
+    Double getMaxSalary(T object);
+
+    long getMinAge(T object);
+
 //    Double getAverageSalaryByDep(Long depId);
 }

@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 @Slf4j
-public class EmployeeDAOImplHQL implements EmployeeDAO<SessionFactory> {
+public class EmployeeDAOImplHQL implements EmployeeDAO {
 
     public List<Employee> getAll(SessionFactory sessionFactory){
         Session session = sessionFactory.openSession();
@@ -179,5 +179,16 @@ public class EmployeeDAOImplHQL implements EmployeeDAO<SessionFactory> {
         return minAge;
     }
 
-//    Double getAverageSalaryByDep(Long depId);
+    public Double getAverageSalaryByDep(SessionFactory sessionFactory, Long depId){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query<Double> query =
+                session.createQuery("select AVG(salary) FROM Employee group by department.departmentId", Double.class);
+        List<Double> avgSalaryByDep = query.list();
+        int index = Math.toIntExact(depId - 1);
+        log.info(avgSalaryByDep.get(index).toString());
+        session.getTransaction().commit();
+        session.close();
+        return avgSalaryByDep.get(index);
+    }
 }

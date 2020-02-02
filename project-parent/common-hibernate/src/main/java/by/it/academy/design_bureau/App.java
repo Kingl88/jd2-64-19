@@ -1,5 +1,6 @@
 package by.it.academy.design_bureau;
 
+import by.it.academy.design_bureau.DAO.impl.EmployeeDAOImplCriteria;
 import by.it.academy.design_bureau.DAO.impl.EmployeeDAOImplHQL;
 import by.it.academy.design_bureau.entity.Department;
 import by.it.academy.design_bureau.entity.Employee;
@@ -14,20 +15,36 @@ public class App {
     public static void main(String[] args) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         add(sessionFactory);
-        EmployeeDAOImplHQL employeeDAOImplHQL = new EmployeeDAOImplHQL();
-        employeeDAOImplHQL.getAll(sessionFactory);
-        employeeDAOImplHQL.getByName(sessionFactory, "Pety");
-        employeeDAOImplHQL.getAllWithNameNotNull(sessionFactory);
-        employeeDAOImplHQL.getSalaryGraterThan(sessionFactory, 1000L);
-        employeeDAOImplHQL.getSalaryGraterThanOrderDesc(sessionFactory, 1L);
-        employeeDAOImplHQL.getSalaryLessOrEqual(sessionFactory, 1000L);
-        employeeDAOImplHQL.getByAgeBetween(sessionFactory, 24, 30);
-        employeeDAOImplHQL.getByAgeAndName(sessionFactory, "Ivan", 25);
-        employeeDAOImplHQL.getByAgeOrName(sessionFactory, "Ivan", 35);
-        employeeDAOImplHQL.getEmployeeCount(sessionFactory);
-        employeeDAOImplHQL.getAverageSalary(sessionFactory);
-        employeeDAOImplHQL.getMaxSalary(sessionFactory);
-        employeeDAOImplHQL.getMinAge(sessionFactory);
+//        EmployeeDAOImplHQL employeeDAOImplHQL = new EmployeeDAOImplHQL();
+//        employeeDAOImplHQL.getAll(sessionFactory);
+//        employeeDAOImplHQL.getByName(sessionFactory, "Pety");
+//        employeeDAOImplHQL.getAllWithNameNotNull(sessionFactory);
+//        employeeDAOImplHQL.getSalaryGraterThan(sessionFactory, 1000L);
+//        employeeDAOImplHQL.getSalaryGraterThanOrderDesc(sessionFactory, 1L);
+//        employeeDAOImplHQL.getSalaryLessOrEqual(sessionFactory, 1000L);
+//        employeeDAOImplHQL.getByAgeBetween(sessionFactory, 24, 30);
+//        employeeDAOImplHQL.getByAgeAndName(sessionFactory, "Ivan", 25);
+//        employeeDAOImplHQL.getByAgeOrName(sessionFactory, "Ivan", 35);
+//        employeeDAOImplHQL.getEmployeeCount(sessionFactory);
+//        employeeDAOImplHQL.getAverageSalary(sessionFactory);
+//        employeeDAOImplHQL.getMaxSalary(sessionFactory);
+//        employeeDAOImplHQL.getMinAge(sessionFactory);
+//        employeeDAOImplHQL.getAverageSalaryByDep(sessionFactory,  1L);
+        EmployeeDAOImplCriteria  employeeDAOImplCriteria = new EmployeeDAOImplCriteria();
+        employeeDAOImplCriteria.getAll(sessionFactory);
+        employeeDAOImplCriteria.getByName(sessionFactory, "Pety");
+        employeeDAOImplCriteria.getAllWithNameNotNull(sessionFactory);
+        employeeDAOImplCriteria.getSalaryGraterThan(sessionFactory, 1000L);
+        employeeDAOImplCriteria.getSalaryGraterThanOrderDesc(sessionFactory, 999L);
+        employeeDAOImplCriteria.getSalaryLessOrEqual(sessionFactory, 1000L);
+        employeeDAOImplCriteria.getByAgeBetween(sessionFactory, 24,30);
+        employeeDAOImplCriteria.getByAgeAndName(sessionFactory, "Ivan", 25);
+        employeeDAOImplCriteria.getByAgeOrName(sessionFactory, "Ivan", 35);
+        employeeDAOImplCriteria.getEmployeeCount(sessionFactory);
+        employeeDAOImplCriteria.getAverageSalary(sessionFactory);
+        employeeDAOImplCriteria.getMaxSalary(sessionFactory);
+        employeeDAOImplCriteria.getMinAge(sessionFactory);
+        employeeDAOImplCriteria.getAverageSalaryByDep(sessionFactory, 1L);
 
         HibernateUtil.shutdown();
     }

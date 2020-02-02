@@ -1,38 +1,39 @@
 package by.it.academy.design_bureau.DAO;
 
 import by.it.academy.design_bureau.entity.Employee;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public interface EmployeeDAO<T> {
+public interface EmployeeDAO {
 
-    List<Employee> getAll(T object);
+    List<Employee> getAll(SessionFactory sessionFactory);
 
-    List<Employee> getByName(T object, String name);
+    List<Employee> getByName(SessionFactory sessionFactory, String name);
 
-    List<Employee> getAllWithNameNotNull(T object);
+    List<Employee> getAllWithNameNotNull(SessionFactory sessionFactory);
 
-    List<Employee> getSalaryGraterThan(T object, Long salary);
+    List<Employee> getSalaryGraterThan(SessionFactory sessionFactory, Long salary);
 
-    List<Employee> getSalaryGraterThanOrderDesc(T object, Long salary);
+    List<Employee> getSalaryGraterThanOrderDesc(SessionFactory sessionFactory, Long salary);
 
-    List<Employee> getSalaryLessOrEqual(T object, Long salary);
+    List<Employee> getSalaryLessOrEqual(SessionFactory sessionFactory, Long salary);
 
-    List<Employee> getByAgeBetween(T object, Integer from, Integer to);
+    List<Employee> getByAgeBetween(SessionFactory sessionFactory, Integer from, Integer to);
 
-    List<Employee> getByAgeAndName(T object, String name, Integer age);
+    List<Employee> getByAgeAndName(SessionFactory sessionFactory, String name, Integer age);
 
-    List<Employee> getByAgeOrName(T object, String name, Integer age);
+    List<Employee> getByAgeOrName(SessionFactory sessionFactory, String name, Integer age);
 
 
     // aggregation
-    long getEmployeeCount(T object);
+    long getEmployeeCount(SessionFactory sessionFactory);
 
-    Double getAverageSalary(T object);
+    Double getAverageSalary(SessionFactory sessionFactory);
 
-    Double getMaxSalary(T object);
+    Double getMaxSalary(SessionFactory sessionFactory);
 
-    long getMinAge(T object);
+    long getMinAge(SessionFactory sessionFactory);
 
-//    Double getAverageSalaryByDep(Long depId);
+    Double getAverageSalaryByDep(SessionFactory sessionFactory, Long depId);
 }

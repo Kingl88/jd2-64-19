@@ -3,6 +3,7 @@ package by.it.academy.design_bureau.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,8 +21,8 @@ public class Department {
     @Column(name = "DEPARTMENT_NAME")
     private String departmentName;
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Set<Employee> employees = new HashSet<>();
-
     public Department(String departmentName) {
         this.departmentName = departmentName;
     }

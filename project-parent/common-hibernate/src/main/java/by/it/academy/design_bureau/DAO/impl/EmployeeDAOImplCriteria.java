@@ -162,25 +162,14 @@ public class EmployeeDAOImplCriteria implements EmployeeDAO {
 
     @Override
     public Double getAverageSalaryByDep(SessionFactory sessionFactory, Long depId) {
+
         CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
         CriteriaQuery<Double> criteria = cb.createQuery(Double.class);
         Root<Employee> employee = criteria.from(Employee.class);
-        Join<Employee, Department> join = employee.join("department", JoinType.INNER);
-        criteria.select(cb.avg(employee.get("salary"))).where(cb.equal(join.get("departmentId"), depId));
-        Session session = sessionFactory.openSession();
-        Double result = session.createQuery(criteria).getSingleResult();
-        log.info(String.valueOf(result));
-        session.close();
-        return result;
-
-//        CriteriaBuilder cb = sessionFactory.getCriteriaBuilder();
-//        CriteriaQuery<Double> criteria = cb.createQuery(Double.class);
-//        Root<Employee> employee = criteria.from(Employee.class);
-//        Root<Department> department = criteria.from(Department.class);
-//        criteria.groupBy(department.get("departmentId"));
-//        criteria.select(cb.avg(employee.get("salary"))).groupBy(department.get("departmentId"));
-//        List<Double> employees = sessionFactory.openSession().createQuery(criteria).getResultList();
-//        log.info(String.valueOf(employees.get(0)));
-//        return null;
+        criteria.select(cb.avg(employee.get("salary"))).groupBy(employee.get("department"));
+        List<Double> employees = sessionFactory.openSession().createQuery(criteria).getResultList();
+        int index = Math.toIntExact(--depId);
+        log.info(String.valueOf(employees.get(index)));
+        return employees.get(index);
     }
 }

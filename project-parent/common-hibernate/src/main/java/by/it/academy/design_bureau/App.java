@@ -15,7 +15,7 @@ public class App {
     public static void main(String[] args) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         add(sessionFactory);
-//        EmployeeDAOImplHQL employeeDAOImplHQL = new EmployeeDAOImplHQL();
+        EmployeeDAOImplHQL employeeDAOImplHQL = new EmployeeDAOImplHQL();
 //        employeeDAOImplHQL.getAll(sessionFactory);
 //        employeeDAOImplHQL.getByName(sessionFactory, "Pety");
 //        employeeDAOImplHQL.getAllWithNameNotNull(sessionFactory);

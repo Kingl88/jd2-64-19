@@ -185,7 +185,7 @@ public class EmployeeDAOImplHQL implements EmployeeDAO {
         Query<Double> query =
                 session.createQuery("select AVG(salary) FROM Employee group by department.departmentId", Double.class);
         List<Double> avgSalaryByDep = query.list();
-        int index = Math.toIntExact(depId - 1);
+        int index = Math.toIntExact(--depId);
         log.info(avgSalaryByDep.get(index).toString());
         session.getTransaction().commit();
         session.close();

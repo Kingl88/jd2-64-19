@@ -12,6 +12,6 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">create</property>
         <mapping class="by.it.academy.design_bureau.entity.Employee"/>
-        <mapping class="by.it.academy.design_bureau.entity.EmployeeDetail"/>
+        <mapping class="by.it.academy.design_bureau.entity.Department"/>
     </session-factory>
 </hibernate-configuration>

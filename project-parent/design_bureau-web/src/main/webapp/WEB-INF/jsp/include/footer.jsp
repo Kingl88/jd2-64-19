@@ -2,9 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
-<div style="background: #E0E0E0; text-align: center; padding: 5px; margin-top: 10px;">
-    <a href="?lang=en">en</a> |
-    <a href="?lang=ru">ru</a>
-    @Copyright Design_bureau 2019
+<style>
+    <%@include file="/WEB-INF/CSS/style.css"%>
+</style>
+<div class="footer">
+    Локализация
+    <a style="text-decoration: none;" href="?lang=en">en</a> |
+    <a style="text-decoration: none;" href="?lang=ru">ru</a>
+    <p> @Copyright Design_bureau 2019 </p>
 </div>

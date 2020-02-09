@@ -4,28 +4,26 @@
 
 <!DOCTYPE html>
 <html>
+<%@include file="include/header.jsp" %>
 <head>
-    <%@include file="include/header.jsp" %>
     <title><fmt:message key="home.page.header"/></title>
 </head>
 <body>
 
-
-
 <%@include file="include/menu.jsp" %>
+<div class="content">
 
-<h3><fmt:message key="home.page.header"/></h3>
-
-<fmt:message key="home.page.text"/>
-
-<ul>
+<h1><fmt:message key="home.page.header"/></h1>
+<p>
+    <fmt:message key="home.page.text"/>
+</p>
+<ol>
     <li><fmt:message key="home.page.text.function.one"/></li>
     <li><fmt:message key="home.page.text.function.two"/></li>
     <li><fmt:message key="home.page.text.function.three"/></li>
     <li><fmt:message key="home.page.text.function.four"/></li>
-</ul>
-
-<jsp:include page="include/footer.jsp"/>
-
+</ol>
+</div>
 </body>
+<jsp:include page="include/footer.jsp"/>
 </html>

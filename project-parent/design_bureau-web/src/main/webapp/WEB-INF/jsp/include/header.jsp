@@ -13,15 +13,9 @@
 
 <fmt:setBundle basename="messages"/>
 
-<div style="background: #E0E0E0; height: 55px; padding: 5px;">
-    <div style="float: left">
-        <h1 style="margin-top: 10px"><fmt:message key="header.app.title"/></h1>
-    </div>
-
-    <div style="float: right; padding: 15px; text-align: right;">
-        <!-- User store in session with attribute: loginedUser -->
+    <div style="padding: 15px; text-align: right; font-size: 14px;">
+        <h2 class="header"><fmt:message key="header.app.title"/></h2>
         <c:if test="${sessionScope.auth_user != null}"> Hello <b>${sessionScope.auth_user.userNameLogin}</b>
             <a href="${pageContext.request.contextPath}/logout">logout</a>
         </c:if>
     </div>
-</div>

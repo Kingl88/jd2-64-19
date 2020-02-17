@@ -13,6 +13,7 @@
   <modules>
     <module>design_bureau-common</module>
     <module>design_bureau-web</module>
+      <module>design_bureau-spring</module>
   </modules>
 
   <properties>

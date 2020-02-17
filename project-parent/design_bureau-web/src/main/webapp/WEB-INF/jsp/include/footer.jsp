@@ -9,5 +9,5 @@
     Локализация
     <a style="text-decoration: none;" href="?lang=en">en</a> |
     <a style="text-decoration: none;" href="?lang=ru">ru</a>
-    <p> @Copyright Design_bureau 2019 </p>
+    <p> @Copyright Design_bureau 2020 </p>
 </div>

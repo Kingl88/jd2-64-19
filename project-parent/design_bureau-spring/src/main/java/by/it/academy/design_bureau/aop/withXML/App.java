@@ -14,4 +14,7 @@ public class App {
             taskService.performExceptionJob();
         } catch (Exception e) {
             log.error("Error", e);
-        } context.close(); } }
+        }
+        context.close();
+    }
+}
